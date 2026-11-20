@@ -18,10 +18,8 @@ try {
 		},
 	});
 	repos = await res.json();
-	console.log("msg repo:", repos);
-} catch (error) {
-	console.error("fetch error:", error);
-}
+	repos = repos.filter((repo) => repo.name.toLowerCase() != "about-me");
+} catch (error) {}
 ---
 
 <Base>
