@@ -8,7 +8,14 @@ type Repo = {
 	description: string;
 };
 
-let res = await fetch("https://api.github.com/users/isnakode/repos");
+const GITHUB_TOKEN = import.meta.env.GITHUB_TOKEN;
+
+let res = await fetch("https://api.github.com/users/isnakode/repos", {
+	headers: {
+		"User-Agent": "isnaini.dev",
+		Authorization: `Bearer ${GITHUB_TOKEN}`,
+	},
+});
 let repos: Repo[] = await res.json();
 ---
 
