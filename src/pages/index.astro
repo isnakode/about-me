@@ -1,16 +1,50 @@
 ---
+import Base from "../layouts/base.astro";
+import Header from "../components/header.astro";
+
+type Repo = {
+	name: string;
+	html_url: string;
+	description: string;
+};
+
+let res = await fetch("https://api.github.com/users/isnakode/repos");
+let repos: Repo[] = await res.json();
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Base>
+	<Header />
+
+	<h2 class="pb-4">Hi I'm Isnaini</h2>
+	<p>
+		I build stuff in Rust. Usually graphics, encoders, parsers, network stuff.
+		If I learn something cool, I'll probably write about it.
+	</p>
+	<p>
+		You can find me on{" "}
+		<a target="_blank" href="https://github.com/isnakode">
+			Github
+		</a>
+		,{" "}
+		<a target="_blank" href="https://x.com/isnakode">
+			X
+		</a>
+		,{" "}
+		<a target="_blank" href="https://instagram.com/isnakode">
+			Instagram
+		</a>
+	</p>
+	<p>and here are some projects i've built:</p>
+	<ul>
+		{repos.map((repo) => (
+			<li>
+				<p>
+					<a class="font-semibold capitalize" href={repo.html_url}>
+						{repo.name}
+					</a>
+				</p>
+				<p>{repo.description ?? "no description"}</p>
+			</li>
+		))}
+	</ul>
+</Base>

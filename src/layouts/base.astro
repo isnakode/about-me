@@ -1,0 +1,19 @@
+---
+import "../styles/global.css";
+const { title } = Astro.props;
+let newTitle = title ?? "isnaini";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{newTitle}</title>
+  </head>
+  <body class="flex justify-center">
+    <main class="container prose max-w-3xl prose-headings:m-0 prose-ul:my-0 prose-p:my-2 prose-a:tracking-wider">
+      <slot />
+    </main>
+  </body>
+</html>
