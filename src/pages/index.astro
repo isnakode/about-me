@@ -18,6 +18,7 @@ try {
 		},
 	});
 	repos = await res.json();
+	console.log("msg repo:", repos);
 } catch (error) {
 	console.error("fetch error:", error);
 }
